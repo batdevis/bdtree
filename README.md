@@ -3,6 +3,8 @@
 **bdtree** is a link-in-bio page for bands, an open-source alternative to Linktree that you host yourself for free.
 Built with [Eleventy](https://www.11ty.dev/) and deployed to Firebase Hosting.
 
+<p align="center"><img src="docs/screenshot.jpg" width="600" alt="bdtree demo on a phone: home page with link buttons, upcoming gigs and booking, next to the Markdown bio page"></p>
+
 - Italian at `/`, English at `/en/`, with a language switch on every page
 - Link buttons (streaming, socials, downloads), one of them highlighted
 - Upcoming gigs: past dates disappear automatically at build time
