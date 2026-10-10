@@ -9,7 +9,7 @@ const read = (file) => readFileSync(`${contentDir}/${file}`, "utf8");
 const readJson = (file) => JSON.parse(read(file));
 
 export default function (eleventyConfig) {
-  console.log(`[linkpage] content from ./${contentDir}`);
+  console.log(`[bdtree] content from ./${contentDir}`);
 
   eleventyConfig.addPlugin(RenderPlugin);
 

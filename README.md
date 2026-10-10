@@ -1,6 +1,6 @@
-# Band link page
+# bdtree
 
-A link-in-bio page for bands, an open-source alternative to Linktree that you host yourself for free.
+**bdtree** is a link-in-bio page for bands, an open-source alternative to Linktree that you host yourself for free.
 Built with [Eleventy](https://www.11ty.dev/) and deployed to Firebase Hosting.
 
 - Italian at `/`, English at `/en/`, with a language switch on every page
