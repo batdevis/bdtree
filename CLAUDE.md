@@ -1,0 +1,33 @@
+# bdtree
+
+Link-in-bio page for bands: Eleventy 3 (Nunjucks), static output, deployed to Firebase Hosting. Public, MIT.
+
+## Commands
+
+- `npm start`: dev server on http://localhost:8080 with live reload (also on content edits)
+- `npm run build`: wipes `_site/`, then builds
+- `npm run deploy`: build + `firebase-tools deploy --project <band.json firebaseProject>` (`scripts/deploy.js`; refuses with `example/` content)
+- `KIT_DIR=/path npm run presskit`: zips a folder into `<content>/press/<Name>-press-kit.zip`, JPEGs shrunk to 2400px (`scripts/presskit.sh`)
+
+## Code vs content
+
+Code and band content are strictly separate.
+
+- Content dir = `$CONTENT_DIR`, else `content/`, else `example/` (`contentDir` in `eleventy.config.js`). `content/` is gitignored (`/content`, which also matches a symlink): each band keeps it in its own, usually private, repo.
+- Content format: `band.json`, `gigs.json`, `i18n.json`, `bio/{it,en}.md`, `img/`, `press/`, optional `theme.css`. `example/` is the reference for this format: keep it complete and working whenever the format changes.
+- **Never put real band data in this repo**, i.e. no names, contacts, photos or PDFs of an actual band. `example/` is the fictional "The Placeholders". Its images are generated (ImageMagick plasma), and its tech rider PDF comes from headless Chrome.
+- Templates read content only through global data (`band`, `gigs`, `i18n`, `bio`, `hasTheme`) and the `svg` shortcode. Assets are passthrough-copied from `<content>/img|press` to `/assets/img|press`.
+
+## Architecture notes
+
+- Bilingual: each page is paginated over `langs: ["it", "en"]`. Italian is at `/`, English at `/en/`. Each page declares `path:` (e.g. `/bio/`), and the `localUrl` filter builds the URL for either language (used by the language switch and hreflang).
+- Bio: `src/bio.njk` renders `bio[lang]` with `renderContent("md")` (Eleventy RenderPlugin). There's no front matter in the `.md` files; the page description is in `i18n.json` as `bioDescription`.
+- Gigs: the `upcoming` filter drops past dates **at build time**, so a redeploy is needed after a show.
+- Links in `band.json`: `url` (external) or `page` (internal, localized), optional `featured`, `newTab`. The `id` picks the icon in `src/_includes/icons.njk`.
+- `setUseGitIgnore(false)` is required: otherwise the watcher ignores the gitignored `content/` and live reload breaks.
+- Zero client-side JS. Mobile-first single column; the design tokens are at the top of `src/assets/css/style.css`. The stepped `clip-path` corners are the visual motif.
+
+## Conventions
+
+- Pin dependency versions exactly. Avoid adding dependencies: Eleventy already bundles markdown-it and the Render plugin.
+- Check UI changes at ~400px and desktop width, and on both languages, with `content/` and with `CONTENT_DIR=example`.
