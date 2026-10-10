@@ -1,0 +1,13 @@
+{% macro icon(id) %}
+{%- if id == "bandcamp" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M0 18.75 7.44 5.25H24l-7.44 13.5z"/></svg>
+{%- elif id == "instagram" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+{%- elif id == "presskit" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></svg>
+{%- elif id == "mail" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+{%- else -%}
+<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
+{%- endif -%}
+{% endmacro %}

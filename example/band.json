@@ -1,0 +1,43 @@
+{
+  "name": "The Placeholders",
+  "siteUrl": "https://your-project-id.web.app",
+  "firebaseProject": "",
+  "genre": {
+    "it": "fuzz rock immaginario · Ovunque",
+    "en": "imaginary fuzz rock · Anywhere"
+  },
+  "tagline": {
+    "it": "Sostituisci questo testo con la frase che vi rappresenta.",
+    "en": "Replace this line with the one that sums up your band."
+  },
+  "email": "booking@example.com",
+  "links": [
+    {
+      "id": "bandcamp",
+      "label": { "it": "Ascolta su Bandcamp", "en": "Listen on Bandcamp" },
+      "url": "https://bandcamp.com",
+      "featured": true
+    },
+    {
+      "id": "instagram",
+      "label": { "it": "Instagram @yourband", "en": "Instagram @yourband" },
+      "url": "https://www.instagram.com/"
+    },
+    {
+      "id": "bio",
+      "label": { "it": "Bio", "en": "Bio" },
+      "page": "/bio/"
+    },
+    {
+      "id": "rider",
+      "label": { "it": "Tech Rider", "en": "Tech Rider" },
+      "url": "/assets/press/ThePlaceholders-tech-rider.pdf",
+      "newTab": true
+    },
+    {
+      "id": "presskit",
+      "label": { "it": "Press Kit", "en": "Press Kit" },
+      "url": "/assets/press/ThePlaceholders-press-kit.zip"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+node_modules/
+_site/
+.firebase/
+.firebaserc
+firebase-debug.log
+# Your band's own content: keep it in a separate (private) repo cloned here.
+content/

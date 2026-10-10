@@ -1,0 +1,16 @@
+{
+  "name": "band-linkpage",
+  "description": "Link-in-bio page for bands: Eleventy + Firebase Hosting, bilingual, gigs, bio, press kit.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "rm -rf _site && eleventy",
+    "deploy": "node scripts/deploy.js",
+    "presskit": "bash scripts/presskit.sh"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6"
+  }
+}

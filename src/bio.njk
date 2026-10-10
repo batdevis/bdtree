@@ -1,0 +1,14 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+langs: ["it", "en"]
+permalink: "{{ '/bio/' if lang == 'it' else '/' + lang + '/bio/' }}"
+layout: bio.njk
+path: /bio/
+pageTitle: Bio
+eleventyComputed:
+  description: "{{ i18n[lang].bioDescription }}"
+---
+{{ bio[lang] | renderContent("md") | safe }}

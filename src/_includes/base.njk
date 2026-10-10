@@ -1,0 +1,35 @@
+{%- set t = i18n[lang] -%}
+{%- set other = "en" if lang == "it" else "it" -%}
+<!doctype html>
+<html lang="{{ t.htmlLang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% if pageTitle %}{{ pageTitle }} · {{ band.name }}{% else %}{{ band.name }} · {{ band.genre[lang] }}{% endif %}</title>
+  <meta name="description" content="{{ description or t.description }}">
+  <meta name="theme-color" content="#0f1210">
+  <link rel="canonical" href="{{ band.siteUrl }}{{ page.url }}">
+  <link rel="alternate" hreflang="it" href="{{ band.siteUrl }}{{ path | localUrl('it') }}">
+  <link rel="alternate" hreflang="en" href="{{ band.siteUrl }}{{ path | localUrl('en') }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if pageTitle %}{{ pageTitle }} · {% endif %}{{ band.name }}">
+  <meta property="og:description" content="{{ band.tagline[lang] }}">
+  <meta property="og:url" content="{{ band.siteUrl }}{{ page.url }}">
+  <meta property="og:image" content="{{ band.siteUrl }}/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {%- if hasTheme %}
+  <link rel="stylesheet" href="/assets/css/theme.css">
+  {%- endif %}
+</head>
+<body>
+  <a class="lang" href="{{ path | localUrl(other) }}" hreflang="{{ other }}" lang="{{ other }}">{{ t.switchLabel }}</a>
+  {{ content | safe }}
+</body>
+</html>

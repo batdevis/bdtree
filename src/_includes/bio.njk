@@ -1,0 +1,30 @@
+---
+layout: base.njk
+---
+{%- set t = i18n[lang] -%}
+<main class="wrap bio">
+  <nav class="bio__nav">
+    <a class="bio__back" href="{{ '/' | localUrl(lang) }}">← {{ t.back }}</a>
+  </nav>
+
+  <header class="bio__head">
+    <a class="bio__logo" href="{{ '/' | localUrl(lang) }}" aria-label="{{ band.name }}">{% svg "logo.svg" %}</a>
+    <h1 class="section-title">{{ pageTitle }}</h1>
+  </header>
+
+  <article class="prose">
+    {{ content | safe }}
+  </article>
+
+  <figure class="bio__photo">
+    <picture>
+      <source srcset="/assets/img/bio.webp" type="image/webp">
+      <img src="/assets/img/bio.jpg" width="800" height="1200" alt="{{ t.bioPhotoAlt }}" loading="lazy">
+    </picture>
+  </figure>
+
+  <footer class="foot">
+    <span class="foot__bat" aria-hidden="true"></span>
+    <p>© {{ year }} {{ band.name }}</p>
+  </footer>
+</main>

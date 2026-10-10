@@ -1,0 +1,76 @@
+---
+pagination:
+  data: langs
+  size: 1
+  alias: lang
+langs: ["it", "en"]
+permalink: "{{ '/' if lang == 'it' else '/' + lang + '/' }}"
+layout: base.njk
+path: /
+---
+{%- from "icons.njk" import icon -%}
+{%- set t = i18n[lang] -%}
+{%- set gigs = gigs | upcoming -%}
+<main class="wrap">
+  <header class="hero">
+    <picture class="hero__photo">
+      <source srcset="/assets/img/band.webp" type="image/webp">
+      <img src="/assets/img/band.jpg" width="900" height="1350" alt="{{ t.photoAlt }}">
+    </picture>
+    <h1 class="hero__logo">{% svg "logo.svg" %}</h1>
+  </header>
+
+  <p class="genre">{{ band.genre[lang] }}</p>
+  <p class="tagline">{{ band.tagline[lang] }}</p>
+
+  <ul class="links">
+    {%- for link in band.links %}
+    {%- set href = link.page | localUrl(lang) if link.page else link.url %}
+    <li>
+      <a class="btn{% if link.featured %} btn--featured{% endif %}" href="{{ href }}"
+         {%- if link.newTab %} target="_blank"{% endif %}
+         {%- if href.startsWith('http') or link.newTab %} rel="noopener"{% endif %}>
+        <span class="btn__icon">{{ icon(link.id) }}</span>
+        <span>{{ link.label[lang] }}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+
+  {% if gigs.length %}
+  <section class="gigs" aria-labelledby="gigs-title">
+    <h2 id="gigs-title" class="section-title">{{ t.gigs }}</h2>
+    <ol class="gigs__list">
+      {%- for g in gigs %}
+      {%- set d = g.date | gigDate(lang) %}
+      <li class="gig">
+        <time class="gig__date" datetime="{{ g.date }}">
+          <span class="gig__day">{{ d.day }}</span>
+          <span class="gig__month">{{ d.month }}</span>
+        </time>
+        <div class="gig__where">
+          <strong>{{ g.city }}</strong>
+          <span>{{ d.weekday }} · {{ g.venue }}</span>
+        </div>
+        {%- if g.url %}
+        <a class="gig__link" href="{{ g.url }}" target="_blank" rel="noopener">{{ t.tickets }}</a>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {% endif %}
+
+  <section class="booking" aria-labelledby="booking-title">
+    <h2 id="booking-title" class="section-title">{{ t.booking }}</h2>
+    <p>{{ t.bookingHint }}</p>
+    <a class="booking__mail" href="mailto:{{ band.email }}">
+      <span class="btn__icon">{{ icon("mail") }}</span>{{ band.email }}
+    </a>
+  </section>
+
+  <footer class="foot">
+    <span class="foot__bat" aria-hidden="true"></span>
+    <p>© {{ year }} {{ band.name }}</p>
+  </footer>
+</main>

@@ -1,0 +1,28 @@
+{
+  "it": {
+    "htmlLang": "it",
+    "description": "The Placeholders: ascolta, seguici, prossime date e booking.",
+    "gigs": "Prossime date",
+    "tickets": "Info",
+    "booking": "Booking",
+    "bookingHint": "Scrivici per date e festival",
+    "photoAlt": "Foto della band",
+    "switchLabel": "English",
+    "back": "Torna ai link",
+    "bioPhotoAlt": "Foto della band",
+    "bioDescription": "The Placeholders: biografia."
+  },
+  "en": {
+    "htmlLang": "en",
+    "description": "The Placeholders: listen, follow, upcoming shows and booking.",
+    "gigs": "Upcoming shows",
+    "tickets": "Info",
+    "booking": "Booking",
+    "bookingHint": "Get in touch for shows and festivals",
+    "photoAlt": "Band photo",
+    "switchLabel": "Italiano",
+    "back": "Back to links",
+    "bioPhotoAlt": "Band photo",
+    "bioDescription": "The Placeholders: biography."
+  }
+}
