@@ -1,0 +1,8 @@
+{% from "icons.njk" import icon %}
+<footer class="foot">
+  <span class="foot__bat" aria-hidden="true"></span>
+  <p>© {{ year }} {{ band.name }}</p>
+  {%- if repoUrl %}
+  <p><a class="foot__src" href="{{ repoUrl }}" target="_blank" rel="noopener">{{ icon("github") }}<span>bdtree</span></a></p>
+  {%- endif %}
+</footer>

@@ -3,6 +3,10 @@
   "description": "Link-in-bio page for bands: Eleventy + Firebase Hosting, bilingual, gigs, bio, press kit.",
   "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/batdevis/bdtree"
+  },
   "type": "module",
   "scripts": {
     "start": "eleventy --serve",

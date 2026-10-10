@@ -25,6 +25,7 @@ Code and band content are strictly separate.
 - Gigs: the `upcoming` filter drops past dates **at build time**, so a redeploy is needed after a show.
 - Links in `band.json`: `url` (external) or `page` (internal, localized), optional `featured`, `newTab`. The `id` picks the icon in `src/_includes/icons.njk`.
 - `setUseGitIgnore(false)` is required: otherwise the watcher ignores the gitignored `content/` and live reload breaks.
+- Footer (`src/_includes/footer.njk`, shared by all pages): the GitHub "source" link comes from `repository.url` in `package.json` (global data `repoUrl`); it's hidden if that's missing.
 - Zero client-side JS. Mobile-first single column; the design tokens are at the top of `src/assets/css/style.css`. The stepped `clip-path` corners are the visual motif.
 
 ## Conventions

@@ -18,6 +18,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("gigs", () => readJson("gigs.json"));
   eleventyConfig.addGlobalData("i18n", () => readJson("i18n.json"));
   eleventyConfig.addGlobalData("bio", () => ({ it: read("bio/it.md"), en: read("bio/en.md") }));
+  // Footer "source code" link: package.json `repository` (forks: point it at your fork).
+  eleventyConfig.addGlobalData("repoUrl", () => JSON.parse(readFileSync("package.json", "utf8")).repository?.url);
   eleventyConfig.addGlobalData("hasTheme", () => existsSync(`${contentDir}/theme.css`));
   eleventyConfig.addWatchTarget(contentDir);
   // content/ is gitignored (it's a separate repo); don't let that stop the watcher.
