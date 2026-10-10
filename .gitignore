@@ -3,5 +3,5 @@ _site/
 .firebase/
 .firebaserc
 firebase-debug.log
-# Your band's own content: keep it in a separate (private) repo cloned here.
-content/
+# Your band's own content: a separate (private) repo, cloned here or symlinked.
+/content

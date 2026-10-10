@@ -59,6 +59,14 @@ To keep your content versioned without making it public, turn `content/` into it
 cd content && git init && git add . && git commit -m "Band content"
 ```
 
+You can also keep the content repo next to the code instead of inside it, and link it:
+
+```sh
+# my-band/bdtree           ← this repo
+# my-band/my-band-content  ← your private content repo
+cd my-band/bdtree && ln -s ../my-band-content content
+```
+
 ### Press kit
 
 Zip a folder of press material into `content/press/<BandName>-press-kit.zip`. JPEG photos are shrunk to 2400 px on the longest side:
