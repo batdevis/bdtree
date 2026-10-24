@@ -6,7 +6,7 @@ Link-in-bio page for bands: Eleventy 3 (Nunjucks), static output, deployed to Fi
 
 - `npm start`: dev server on http://localhost:8080 with live reload (also on content edits)
 - `npm run build`: wipes `_site/`, then builds
-- `npm run deploy`: build + `firebase-tools deploy --project <band.json firebaseProject>` (`scripts/deploy.js`; refuses with `example/` content)
+- `npm run deploy`: build + `firebase-tools deploy --project <band.json firebaseProject>` (`scripts/deploy.js`; refuses with `example/` content). `firebase-tools` is an exact devDependency, so `npx firebase-tools` uses the local copy; bump it with `npm install --save-dev --save-exact firebase-tools@<version>`. Since 15.34 the deploy account also needs `roles/serviceusage.serviceUsageConsumer` (it checks that the Hosting API is enabled)
 - `KIT_DIR=/path npm run presskit`: zips a folder into `<content>/press/<Name>-press-kit.zip`, JPEGs shrunk to 2400px (`scripts/presskit.sh`)
 
 ## Code vs content
@@ -30,5 +30,5 @@ Code and band content are strictly separate.
 
 ## Conventions
 
-- Pin dependency versions exactly. Avoid adding dependencies: Eleventy already bundles markdown-it and the Render plugin.
+- Pin dependency versions exactly. Avoid adding dependencies: Eleventy already bundles markdown-it and the Render plugin. The only other one is `firebase-tools`, pinned so that a CLI release can't change deploy behaviour unnoticed.
 - Check UI changes at ~400px and desktop width, and on both languages, with `content/` and with `CONTENT_DIR=example`.
