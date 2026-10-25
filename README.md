@@ -11,9 +11,13 @@ Built with [Eleventy](https://www.11ty.dev/) and deployed to Firebase Hosting.
 - Booking contact
 - Bio page written in Markdown
 - Downloadable tech rider and press kit
-- Share previews (Open Graph) for Instagram, WhatsApp and similar apps; no client-side JavaScript; about 150 KB per page
+- Share previews (Open Graph) for Instagram, WhatsApp and similar apps; no client-side JavaScript on the public pages; about 150 KB per page
+- Optional `/admin/` editor: bandmates sign in with Google and edit gigs, links, bio and texts with forms, each save a git commit
 
-Live example: [BrokenSlide](https://brokenslideband.web.app), the psych garage blues band this was built for.
+bdtree comes from a real band: it was built for [BrokenSlide](https://brokenslideband.web.app), a psych garage blues trio, and it runs their site every day.
+That's the live example; the code here is generic, and the band's own content lives in a separate private repo.
+
+To start your own, use the template [bdtree-the-placeholders](https://github.com/batdevis/bdtree-the-placeholders): a content repo with a demo band and the GitHub Actions deploy ready.
 
 ## How it works
 
@@ -30,6 +34,10 @@ The code and the band content are kept apart:
 The build reads content from `$CONTENT_DIR`, else `content/`, else `example/`.
 
 ## Make it yours
+
+The recommended start is the template content repo, [bdtree-the-placeholders](https://github.com/batdevis/bdtree-the-placeholders): **Use this template** gives you your own (private) content repo, with the demo band and a workflow that deploys on every push. Its README walks you through the setup, Firebase and CI included.
+
+To just try bdtree locally, copy the demo band instead:
 
 ```sh
 git clone <this-repo> my-band-page

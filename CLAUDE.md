@@ -15,7 +15,7 @@ Link-in-bio page for bands: Eleventy 3 (Nunjucks), static output, deployed to Fi
 Code and band content are strictly separate.
 
 - Content dir = `$CONTENT_DIR`, else `content/`, else `example/` (`contentDir` in `eleventy.config.js`). `content/` is gitignored (`/content`, which also matches a symlink): each band keeps it in its own, usually private, repo.
-- Content format: `band.json`, `gigs.json`, `i18n.json`, `bio/{it,en}.md`, `img/`, `press/`, optional `theme.css` and `functions.env` (admin editor params). `example/` is the reference for this format: keep it complete and working whenever the format changes.
+- Content format: `band.json`, `gigs.json`, `i18n.json`, `bio/{it,en}.md`, `img/`, `press/`, optional `theme.css` and `functions.env` (admin editor params). `example/` is the reference for this format: keep it complete and working whenever the format changes. The public template content repo `batdevis/bdtree-the-placeholders` is a copy of `example/` plus a deploy workflow and setup README: after changing `example/`, run `scripts/sync-template.sh <template clone>` and commit there too.
 - **Never put real band data in this repo**, i.e. no names, contacts, photos or PDFs of an actual band. `example/` is the fictional "The Placeholders". Its images are generated (ImageMagick plasma), and its tech rider PDF comes from headless Chrome.
 - Templates read content only through global data (`band`, `gigs`, `i18n`, `bio`, `hasTheme`) and the `svg` shortcode. Assets are passthrough-copied from `<content>/img|press` to `/assets/img|press`.
 
