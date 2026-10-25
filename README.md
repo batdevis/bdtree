@@ -119,6 +119,13 @@ First time only:
 6. Deploy the site as usual (`npm run deploy`, or push your content repo) to publish `/admin/`.
 
 If two people save at the same time, the second one is asked to reload, so nothing is overwritten.
+If the page says the GitHub token is invalid or expired, create a new one (step 3) and store it again. `--force` also redeploys the functions with it:
+
+```sh
+printf %s "$GITHUB_TOKEN" | npx firebase-tools functions:secrets:set GITHUB_TOKEN --data-file=- --force --project <project-id>
+```
+
+Piping avoids pasting into the hidden prompt, which can store a truncated value.
 
 ## License
 
