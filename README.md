@@ -95,6 +95,31 @@ npm run deploy
 Gigs are filtered when the site is built, so redeploy after a show to remove it from the list.
 To add a custom domain: Firebase console → Hosting → Add custom domain.
 
+## Admin editor (optional, needs the Blaze plan)
+
+`/admin/` is a page where you and your bandmates sign in with Google and edit gigs, links, bio and page texts with forms. Images are still changed by hand.
+On save, a Cloud Function commits the changes to your content repo on GitHub. Your content repo then has to rebuild and deploy on push, e.g. with a GitHub Actions workflow that checks out this repo plus your content and runs `npm run deploy`.
+Git stays the source of truth: every save is a normal commit, with the editor as its author.
+
+The public pages stay JavaScript-free. Only `/admin/` loads the Firebase SDK, and it reads the project config from Hosting's reserved `/__/firebase/init.json`.
+
+First time only:
+
+1. Switch the Firebase project to the **Blaze** plan. A small band site stays in the free tier, but setting a budget alert is a good idea.
+2. Firebase console → Authentication → Sign-in method → enable **Google**.
+3. On GitHub, create a fine-grained personal access token with access to **only your content repo** and the permission **Contents: read and write**. Store it as a secret:
+   ```sh
+   npx firebase-tools functions:secrets:set GITHUB_TOKEN --project <project-id>
+   ```
+4. Copy `example/functions.env` to `content/functions.env` and set your repo and the Google accounts allowed to edit.
+5. Deploy the functions. Run this again whenever `functions/` or `functions.env` changes:
+   ```sh
+   npm run deploy:functions
+   ```
+6. Deploy the site as usual (`npm run deploy`, or push your content repo) to publish `/admin/`.
+
+If two people save at the same time, the second one is asked to reload, so nothing is overwritten.
+
 ## License
 
 The code and the `example/` demo band are licensed under [MIT](LICENSE).

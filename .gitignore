@@ -5,3 +5,7 @@ _site/
 firebase-debug.log
 # Your band's own content: a separate (private) repo, cloned here or symlinked.
 /content
+# Functions: deps, and the per-project params copied from <content>/functions.env.
+functions/node_modules/
+functions/.env.*
+functions/.secret.local
