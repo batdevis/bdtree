@@ -1,0 +1,68 @@
+---
+permalink: /admin/
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Admin · {{ band.name }}</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {%- if hasTheme %}
+  <link rel="stylesheet" href="/assets/css/theme.css">
+  {%- endif %}
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script type="module" src="/admin/admin.js"></script>
+</head>
+<body>
+  <main class="adm">
+    <header class="adm__head">
+      <h1>{{ band.name }} <span>admin</span></h1>
+      <div class="adm__user" id="user" hidden>
+        <span id="user-email"></span>
+        <button type="button" class="adm-btn adm-btn--ghost" id="sign-out">Sign out</button>
+      </div>
+    </header>
+
+    <p class="adm__msg" id="msg" role="status">Loading…</p>
+    <button type="button" class="adm-btn adm-btn--primary" id="sign-in" hidden>Sign in with Google</button>
+
+    <form id="editor" hidden novalidate>
+      <section class="adm-sec">
+        <h2>Gigs</h2>
+        <p class="adm-hint">Past dates disappear from the site by themselves, deleting them is optional. The link is optional.</p>
+        <div id="gigs"></div>
+        <button type="button" class="adm-btn" id="add-gig">+ Add gig</button>
+      </section>
+
+      <section class="adm-sec">
+        <h2>Links</h2>
+        <p class="adm-hint">Buttons on the home page, in this order. The id picks the icon (e.g. <code>instagram</code>, <code>bandcamp</code>, <code>presskit</code>). Use an external URL or a page of this site (e.g. <code>/bio/</code>).</p>
+        <div id="links"></div>
+        <button type="button" class="adm-btn" id="add-link">+ Add link</button>
+      </section>
+
+      <section class="adm-sec">
+        <h2>Bio</h2>
+        <p class="adm-hint">Markdown: <code>**bold**</code>, <code>&gt; quote</code>, <code>- list</code>, <code>[text](https://…)</code>.</p>
+        <div class="adm-grid2" id="bio"></div>
+      </section>
+
+      <section class="adm-sec">
+        <h2>Texts</h2>
+        <div id="texts"></div>
+      </section>
+
+      <div class="adm-bar">
+        <span id="dirty"></span>
+        <button type="submit" class="adm-btn adm-btn--primary" id="save" disabled>Save</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

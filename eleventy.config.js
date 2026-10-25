@@ -26,6 +26,7 @@ export default function (eleventyConfig) {
   eleventyConfig.setUseGitIgnore(false);
 
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("src/admin/*.{js,css}");
   eleventyConfig.addPassthroughCopy({
     [`${contentDir}/img`]: "assets/img",
     [`${contentDir}/press`]: "assets/press",
