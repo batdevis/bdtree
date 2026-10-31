@@ -5,4 +5,8 @@
   {%- if repoUrl %}
   <p><a class="foot__src" href="{{ repoUrl }}" target="_blank" rel="noopener">{{ icon("github") }}<span>bdtree</span></a></p>
   {%- endif %}
+  {%- if band.analytics %}
+  {#- Shown by analytics.js: reopens the consent banner. #}
+  <p><button type="button" class="foot__consent" data-consent-open hidden>{{ i18n[lang].consentManage }}</button></p>
+  {%- endif %}
 </footer>

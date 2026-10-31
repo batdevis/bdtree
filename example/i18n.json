@@ -10,7 +10,11 @@
     "switchLabel": "English",
     "back": "Torna ai link",
     "bioPhotoAlt": "Foto della band",
-    "bioDescription": "The Placeholders: biografia."
+    "bioDescription": "The Placeholders: biografia.",
+    "consentText": "Usiamo Google Analytics (cookie) solo per contare le visite, se sei d'accordo.",
+    "consentAccept": "Accetta",
+    "consentDecline": "Rifiuta",
+    "consentManage": "Cookie"
   },
   "en": {
     "htmlLang": "en",
@@ -23,6 +27,10 @@
     "switchLabel": "Italiano",
     "back": "Back to links",
     "bioPhotoAlt": "Band photo",
-    "bioDescription": "The Placeholders: biography."
+    "bioDescription": "The Placeholders: biography.",
+    "consentText": "We use Google Analytics (cookies) only to count visits, if you agree.",
+    "consentAccept": "Accept",
+    "consentDecline": "Decline",
+    "consentManage": "Cookies"
   }
 }

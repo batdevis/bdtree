@@ -1,0 +1,9 @@
+{%- set t = i18n[lang] -%}
+<div class="consent" role="region" aria-label="Cookie" hidden>
+  <p>{{ t.consentText }}</p>
+  <div class="consent__actions">
+    <button type="button" class="consent__btn" data-consent="denied">{{ t.consentDecline }}</button>
+    <button type="button" class="consent__btn consent__btn--accept" data-consent="granted">{{ t.consentAccept }}</button>
+  </div>
+</div>
+<script type="module" src="/assets/js/analytics.js"></script>
