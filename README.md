@@ -51,7 +51,7 @@ Then edit `content/`:
 
 | File | What |
 | --- | --- |
-| `band.json` | name, `siteUrl`, `firebaseProject`, genre, tagline, booking email, link buttons |
+| `band.json` | name, `siteUrl`, `firebaseProject`, `analytics` (see [Analytics](#analytics-optional)), genre, tagline, booking email, link buttons |
 | `gigs.json` | live dates: `{ "date": "YYYY-MM-DD", "city", "venue", "url" }` (`url` is optional and opens in a new tab) |
 | `i18n.json` | page texts in both languages |
 | `bio/it.md`, `bio/en.md` | biography in Markdown: quotes (`>`), **bold**, lists, links |
@@ -109,7 +109,7 @@ To add a custom domain: Firebase console → Hosting → Add custom domain.
 On save, a Cloud Function commits the changes to your content repo on GitHub. Your content repo then has to rebuild and deploy on push, e.g. with a GitHub Actions workflow that checks out this repo plus your content and runs `npm run deploy`.
 Git stays the source of truth: every save is a normal commit, with the editor as its author.
 
-The public pages stay JavaScript-free. Only `/admin/` loads the Firebase SDK, and it reads the project config from Hosting's reserved `/__/firebase/init.json`.
+The public pages stay JavaScript-free (unless you turn on [Analytics](#analytics-optional)). `/admin/` loads the Firebase SDK, and it reads the project config from Hosting's reserved `/__/firebase/init.json`.
 
 First time only:
 
@@ -134,6 +134,18 @@ printf %s "$GITHUB_TOKEN" | npx firebase-tools functions:secrets:set GITHUB_TOKE
 ```
 
 Piping avoids pasting into the hidden prompt, which can store a truncated value.
+
+## Analytics (optional)
+
+Set `"analytics": true` in `content/band.json` to count visits with Firebase Analytics (Google Analytics 4).
+Pages then show a small consent banner (texts `consent*` in `i18n.json`), and the Firebase SDK loads only after the visitor accepts, as EU rules require for analytics cookies.
+The choice is remembered in the browser; a "Cookie" link in the footer opens the banner again, and declining deletes the `_ga` cookies.
+This is the only JavaScript on the public pages (`src/assets/js/analytics.js`); with `analytics` off they stay JavaScript-free.
+
+First time only: Firebase console → Project settings → Integrations → Google Analytics → **Enable**.
+The measurement ID is then served in Hosting's `/__/firebase/init.json`, so nothing project-specific goes in the code; until then the script does nothing.
+GA4 counts page views on its own, and with enhanced measurement (on by default) also clicks on external links and downloads such as the tech rider.
+Worth setting in Google Analytics → Admin: data retention to 2 months, Google signals off. A privacy/cookie notice for your site is up to you.
 
 ## License
 

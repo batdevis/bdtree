@@ -154,7 +154,9 @@ a {
 /* Stepped corners, borrowed from the pixel bat */
 .btn,
 .gigs,
-.booking {
+.booking,
+.consent,
+.consent__btn {
   --s: var(--step);
   clip-path: polygon(
     0 calc(var(--s) * 2), var(--s) calc(var(--s) * 2), var(--s) var(--s), calc(var(--s) * 2) var(--s), calc(var(--s) * 2) 0,
@@ -375,6 +377,65 @@ a {
 .foot__src svg {
   width: 1.1em;
   height: 1.1em;
+}
+.foot__consent {
+  margin-top: 0.4rem;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.foot__consent:hover,
+.foot__consent:focus-visible {
+  color: var(--acid);
+}
+
+/* Consent banner (only with "analytics": true in band.json) */
+.consent {
+  position: fixed;
+  inset: auto 0.75rem 0.75rem;
+  z-index: 20;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--surface-2);
+}
+.consent[hidden] {
+  display: none;
+}
+.consent p {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+}
+.consent__actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+.consent__btn {
+  --s: 3px;
+  padding: 0.6rem 1.1rem;
+  font: inherit;
+  font-weight: 800;
+  font-stretch: 85%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 0;
+  cursor: pointer;
+}
+.consent__btn:hover {
+  background: var(--red);
+  color: #fff;
+}
+.consent__btn--accept {
+  background: var(--acid);
+  color: var(--bg);
 }
 
 /* Slow light-show drift on the background glow */

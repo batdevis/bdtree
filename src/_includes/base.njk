@@ -31,5 +31,8 @@
 <body>
   <a class="lang" href="{{ path | localUrl(other) }}" hreflang="{{ other }}" lang="{{ other }}">{{ t.switchLabel }}</a>
   {{ content | safe }}
+  {%- if band.analytics %}
+  {% include "consent.njk" %}
+  {%- endif %}
 </body>
 </html>
