@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{% if pageTitle %}{{ pageTitle }} · {{ band.name }}{% else %}{{ band.name }} · {{ band.genre[lang] }}{% endif %}</title>
   <meta name="description" content="{{ description or t.description }}">
-  <meta name="theme-color" content="#0f1210">
+  <meta name="theme-color" content="{{ theme.themeColor }}">
   <link rel="canonical" href="{{ band.siteUrl }}{{ page.url }}">
   <link rel="alternate" hreflang="it" href="{{ band.siteUrl }}{{ path | localUrl('it') }}">
   <link rel="alternate" hreflang="en" href="{{ band.siteUrl }}{{ path | localUrl('en') }}">
@@ -20,11 +20,13 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  {%- if theme.fontsUrl %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+  <link rel="stylesheet" href="{{ theme.fontsUrl }}">
+  {%- endif %}
   <link rel="stylesheet" href="/assets/css/style.css">
-  {%- if hasTheme %}
+  {%- if hasThemeOverrides %}
   <link rel="stylesheet" href="/assets/css/theme.css">
   {%- endif %}
 </head>

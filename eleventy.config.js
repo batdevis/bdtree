@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { RenderPlugin } from "@11ty/eleventy";
 
 // Band content lives outside the code: $CONTENT_DIR, else ./content (your own,
@@ -8,8 +8,22 @@ export const contentDir = process.env.CONTENT_DIR || (existsSync("content") ? "c
 const read = (file) => readFileSync(`${contentDir}/${file}`, "utf8");
 const readJson = (file) => JSON.parse(read(file));
 
+// The look is a theme: themes/<name>/ with style.css and theme.json. Picked by
+// $THEME, else "theme" in band.json, else the default.
+const DEFAULT_THEME = "acid";
+
+function resolveThemeDir() {
+  const name = process.env.THEME || readJson("band.json").theme || DEFAULT_THEME;
+  const dir = `themes/${name}`;
+  if (!existsSync(`${dir}/style.css`)) {
+    throw new Error(`[bdtree] unknown theme "${name}". Available: ${readdirSync("themes").join(", ")}`);
+  }
+  return dir;
+}
+
 export default function (eleventyConfig) {
-  console.log(`[bdtree] content from ./${contentDir}`);
+  const themeDir = resolveThemeDir();
+  console.log(`[bdtree] content from ./${contentDir}, theme from ./${themeDir}`);
 
   eleventyConfig.addPlugin(RenderPlugin);
 
@@ -20,8 +34,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("bio", () => ({ it: read("bio/it.md"), en: read("bio/en.md") }));
   // Footer "source code" link: package.json `repository` (forks: point it at your fork).
   eleventyConfig.addGlobalData("repoUrl", () => JSON.parse(readFileSync("package.json", "utf8")).repository?.url);
-  eleventyConfig.addGlobalData("hasTheme", () => existsSync(`${contentDir}/theme.css`));
+  eleventyConfig.addGlobalData("theme", () => JSON.parse(readFileSync(`${themeDir}/theme.json`, "utf8")));
+  // Optional per-band overrides on top of the theme: <content>/theme.css.
+  eleventyConfig.addGlobalData("hasThemeOverrides", () => existsSync(`${contentDir}/theme.css`));
   eleventyConfig.addWatchTarget(contentDir);
+  eleventyConfig.addWatchTarget("themes");
   // content/ is gitignored (it's a separate repo); don't let that stop the watcher.
   eleventyConfig.setUseGitIgnore(false);
 
@@ -30,6 +47,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     [`${contentDir}/img`]: "assets/img",
     [`${contentDir}/press`]: "assets/press",
+    [`${themeDir}/style.css`]: "assets/css/style.css",
   });
   if (existsSync(`${contentDir}/theme.css`)) {
     eleventyConfig.addPassthroughCopy({ [`${contentDir}/theme.css`]: "assets/css/theme.css" });

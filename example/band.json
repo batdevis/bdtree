@@ -3,6 +3,7 @@
   "siteUrl": "https://your-project-id.web.app",
   "firebaseProject": "",
   "analytics": false,
+  "theme": "acid",
   "genre": {
     "it": "fuzz rock immaginario · Ovunque",
     "en": "imaginary fuzz rock · Anywhere"
