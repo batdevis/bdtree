@@ -8,6 +8,7 @@ Link-in-bio page for bands: Eleventy 3 (Nunjucks), static output, deployed to Fi
 - `npm run build`: wipes `_site/`, then builds
 - `npm run deploy`: build + `firebase-tools deploy --project <band.json firebaseProject>` (`scripts/deploy.js`; refuses with `example/` content). `firebase-tools` is an exact devDependency, so `npx firebase-tools` uses the local copy; bump it with `npm install --save-dev --save-exact firebase-tools@<version>`. Since 15.34 the deploy account also needs `roles/serviceusage.serviceUsageConsumer` (it checks that the Hosting API is enabled)
 - `npm run deploy:functions`: copies `<content>/functions.env` to `functions/.env.<project>` (gitignored), installs `functions/` deps, deploys only the functions (`scripts/deploy-functions.js`). Manual: CI deploys Hosting only
+- `npm run emulators`: build, then Hosting (5000), Auth (9099) and Functions (5001) emulators, to use `/admin/` on http://localhost:5000 (`scripts/emulators.js`). It writes `functions/.env.local` (gitignored, emulator-only): `ADMIN_EMAILS` as a JSON list, which the emulator needs, and `GITHUB_BRANCH` when that env var is set. The functions use the real `GITHUB_TOKEN` secret and content repo: Save commits for real unless `GITHUB_BRANCH` points at a test branch
 - `KIT_DIR=/path npm run presskit`: zips a folder into `<content>/press/<Name>-press-kit.zip`, JPEGs shrunk to 2400px (`scripts/presskit.sh`)
 
 ## Code vs content
