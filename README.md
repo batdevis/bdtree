@@ -179,6 +179,23 @@ printf %s "$GITHUB_TOKEN" | npx firebase-tools functions:secrets:set GITHUB_TOKE
 
 Piping avoids pasting into the hidden prompt, which can store a truncated value.
 
+### Try the editor locally
+
+After the setup above, and with `npx firebase-tools login` done once:
+
+```sh
+npm run emulators      # http://localhost:5000/admin/
+```
+
+This builds the site and serves it on the Firebase emulators (Hosting, Auth, Functions). The sign-in popup is the Auth emulator's: no real Google login, type an email listed in `ADMIN_EMAILS`.
+Rebuild in another terminal (`npx eleventy`, or `npx eleventy --watch`) to see code or content changes.
+
+The local functions read and write your real content repo, with the real `GITHUB_TOKEN` secret, so **Save makes a real commit** and triggers your deploy. To try saving safely, push a test branch of your content repo and point the emulators at it:
+
+```sh
+GITHUB_BRANCH=admin-test npm run emulators
+```
+
 ## Analytics (optional)
 
 Set `"analytics": true` in `content/band.json` to count visits with Firebase Analytics (Google Analytics 4).

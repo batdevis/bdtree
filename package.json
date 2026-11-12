@@ -13,7 +13,8 @@
     "build": "rm -rf _site && eleventy",
     "deploy": "node scripts/deploy.js",
     "presskit": "bash scripts/presskit.sh",
-    "deploy:functions": "node scripts/deploy-functions.js"
+    "deploy:functions": "node scripts/deploy-functions.js",
+    "emulators": "node scripts/emulators.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.6",
