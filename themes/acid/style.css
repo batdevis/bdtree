@@ -5,9 +5,9 @@
   --surface-2: #1f2723;
   --ink: #ecf1e6;
   --muted: #9aaba2;
-  --acid: #8fe6be;
-  --teal: #2f9c86;
-  --red: #e2483b;
+  --accent: #8fe6be;
+  --accent-2: #2f9c86;
+  --hot: #e2483b;
   --step: 5px;
   --font: "Archivo", "Arial Narrow", system-ui, sans-serif;
 }
@@ -30,8 +30,8 @@ body {
   font-size: 1rem;
   line-height: 1.45;
   background:
-    radial-gradient(60rem 40rem at 50% -10%, color-mix(in srgb, var(--teal) 35%, transparent), transparent 70%),
-    radial-gradient(40rem 30rem at 110% 80%, color-mix(in srgb, var(--red) 12%, transparent), transparent 70%),
+    radial-gradient(60rem 40rem at 50% -10%, color-mix(in srgb, var(--accent-2) 35%, transparent), transparent 70%),
+    radial-gradient(40rem 30rem at 110% 80%, color-mix(in srgb, var(--hot) 12%, transparent), transparent 70%),
     var(--bg);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +54,7 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--red);
+  outline: 3px solid var(--hot);
   outline-offset: 3px;
 }
 
@@ -85,8 +85,8 @@ a {
 }
 
 .lang:hover {
-  border-color: var(--acid);
-  color: var(--acid);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* Hero: photo fading into the page, logo on top */
@@ -139,7 +139,7 @@ a {
   font-stretch: 75%;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--acid);
+  color: var(--accent);
 }
 
 .tagline {
@@ -193,13 +193,13 @@ a {
 }
 
 .btn:hover {
-  background: var(--red);
+  background: var(--hot);
   color: #fff;
   transform: translateX(3px);
 }
 
 .btn--featured {
-  background: var(--acid);
+  background: var(--accent);
   color: var(--bg);
 }
 
@@ -225,7 +225,7 @@ a {
   font-stretch: 75%;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--acid);
+  color: var(--accent);
 }
 
 .section-title::after {
@@ -280,7 +280,7 @@ a {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--acid);
+  color: var(--accent);
 }
 
 .gig__where {
@@ -307,13 +307,13 @@ a {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 2px solid var(--acid);
-  color: var(--acid);
+  border: 2px solid var(--accent);
+  color: var(--accent);
 }
 
 .gig__link:hover {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--hot);
+  border-color: var(--hot);
   color: #fff;
 }
 
@@ -330,13 +330,13 @@ a {
   font-size: 1.1rem;
   font-weight: 700;
   overflow-wrap: anywhere;
-  text-decoration-color: var(--acid);
+  text-decoration-color: var(--accent);
   text-underline-offset: 4px;
 }
 
 .booking__mail:hover {
-  color: var(--red);
-  text-decoration-color: var(--red);
+  color: var(--hot);
+  text-decoration-color: var(--hot);
 }
 
 /* Footer */
@@ -371,7 +371,7 @@ a {
 
 .foot__src:hover,
 .foot__src:focus-visible {
-  color: var(--acid);
+  color: var(--accent);
 }
 
 .foot__src svg {
@@ -389,7 +389,7 @@ a {
 }
 .foot__consent:hover,
 .foot__consent:focus-visible {
-  color: var(--acid);
+  color: var(--accent);
 }
 
 /* Consent banner (only with "analytics": true in band.json) */
@@ -430,11 +430,11 @@ a {
   cursor: pointer;
 }
 .consent__btn:hover {
-  background: var(--red);
+  background: var(--hot);
   color: #fff;
 }
 .consent__btn--accept {
-  background: var(--acid);
+  background: var(--accent);
   color: var(--bg);
 }
 
@@ -487,8 +487,8 @@ a {
 }
 
 .bio__back:hover {
-  border-color: var(--acid);
-  color: var(--acid);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .bio__head {
@@ -524,7 +524,7 @@ a {
 .prose blockquote {
   margin: 0 0 1.75rem;
   padding: 0 0 0 1rem;
-  border-left: var(--step) solid var(--acid);
+  border-left: var(--step) solid var(--accent);
   font-size: 1.25rem;
   font-style: italic;
   line-height: 1.45;
@@ -568,12 +568,12 @@ a {
 }
 
 .prose a {
-  color: var(--acid);
+  color: var(--accent);
   text-underline-offset: 3px;
 }
 
 .prose a:hover {
-  color: var(--red);
+  color: var(--hot);
 }
 
 .bio__photo {

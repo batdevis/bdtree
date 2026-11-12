@@ -11,6 +11,7 @@ Built with [Eleventy](https://www.11ty.dev/) and deployed to Firebase Hosting.
 - Booking contact
 - Bio page written in Markdown
 - Downloadable tech rider and press kit
+- Two themes (`acid`, dark; `paper`, light), picked in one line of `band.json`
 - Share previews (Open Graph) for Instagram, WhatsApp and similar apps; no client-side JavaScript on the public pages; about 150 KB per page
 - Optional `/admin/` editor: bandmates sign in with Google and edit gigs, links, bio and texts with forms, each save a git commit
 
@@ -25,7 +26,8 @@ The code and the band content are kept apart:
 
 ```
 .
-├── src/          templates, CSS (the code)
+├── src/          templates (the code)
+├── themes/       the looks: one folder per theme (CSS only)
 ├── example/      a fictional demo band, used when there is no content/
 ├── content/      YOUR band (gitignored, keep it in its own private repo)
 └── scripts/      deploy + press kit helpers
@@ -51,13 +53,13 @@ Then edit `content/`:
 
 | File | What |
 | --- | --- |
-| `band.json` | name, `siteUrl`, `firebaseProject`, `analytics` (see [Analytics](#analytics-optional)), genre, tagline, booking email, link buttons |
+| `band.json` | name, `siteUrl`, `firebaseProject`, `analytics` (see [Analytics](#analytics-optional)), `theme` (see [Themes](#themes)), genre, tagline, booking email, link buttons |
 | `gigs.json` | live dates: `{ "date": "YYYY-MM-DD", "city", "venue", "url" }` (`url` is optional and opens in a new tab) |
 | `i18n.json` | page texts in both languages |
 | `bio/it.md`, `bio/en.md` | biography in Markdown: quotes (`>`), **bold**, lists, links |
 | `img/` | `logo.svg` (inlined; use `fill="currentColor"` so it takes the text color), `favicon.svg`, `band.jpg/.webp` (home photo), `bio.jpg/.webp`, `og.jpg` (1200×630 share image) |
 | `press/` | any files to link, e.g. the tech rider |
-| `theme.css` | optional: override the colors (see the `:root` variables at the top of `src/assets/css/style.css`) |
+| `theme.css` | optional: your own tweaks on top of the theme, e.g. its colors (see [Themes](#themes)) |
 
 Link buttons in `band.json` take `label` (`it`/`en`), plus `url` for external links or `page` for a page of this site (e.g. `/bio/`).
 Optional flags: `featured: true` highlights the button, `newTab: true` opens it in a new tab.
@@ -76,6 +78,48 @@ You can also keep the content repo next to the code instead of inside it, and li
 # my-band/my-band-content  ← your private content repo
 cd my-band/bdtree && ln -s ../my-band-content content
 ```
+
+### Themes
+
+A theme is a folder in `themes/` with the whole look of the public pages. The HTML is the same for every theme.
+
+| Theme | Look |
+| --- | --- |
+| `acid` (default) | dark, film grain, stepped corners, condensed uppercase type |
+| `paper` | light, thin ink rules, framed photos, one accent color |
+
+Pick one with `"theme": "paper"` in `band.json`. To preview a theme without editing the content, set `THEME`:
+
+```sh
+THEME=paper npm start
+```
+
+Restart `npm start` after changing the theme.
+
+To adjust a theme for your band, add a `theme.css` to your content: it loads after the theme. All themes share these variables, so your overrides keep working if you switch:
+
+```css
+:root {
+  --bg: #101010;        /* page background */
+  --surface: #1a1a1a;   /* panels */
+  --surface-2: #242424; /* buttons, separators */
+  --ink: #f0f0f0;       /* text */
+  --muted: #a0a0a0;     /* secondary text */
+  --accent: #ffd23f;    /* highlights, featured button */
+  --accent-2: #2f9c86;  /* second color */
+  --hot: #e2483b;       /* hover and focus */
+  --font: "Georgia", serif;
+}
+```
+
+If your `theme.css` predates themes, rename `--acid` to `--accent`, `--teal` to `--accent-2` and `--red` to `--hot`.
+
+To write a new theme, copy a folder in `themes/` and edit it:
+
+- `style.css`: styles the classes used by the templates in `src/`. Start it with the variables above.
+- `theme.json`: `themeColor` (the browser bar color) and, optionally, `fontsUrl` (a Google Fonts stylesheet URL).
+
+The `/admin/` editor has its own fixed style and doesn't follow the theme.
 
 ### Press kit
 
